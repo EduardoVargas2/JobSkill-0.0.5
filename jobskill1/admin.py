@@ -5,4 +5,4 @@ from .models import *
 
 admin.site.register(Usuarios)
 admin.site.register(Empresa)
-admin.site.register(CustomUser)
+admin.site.register((CustomUser))

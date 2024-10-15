@@ -6,6 +6,9 @@ from paginaEmpresa.models import Puesto
 from paginaUsuario.models import Solicitud
 from jobskill1.models import Empresa, Usuarios
 from django.shortcuts import render, get_object_or_404, redirect
+from .models import Usuarios
+from .forms import EditarPerfil
+
 
 
 
@@ -100,3 +103,19 @@ def notificacion(request):
     return render(request, "paginaUsuario/notificacion.html", {"solicitudes" : solicitud})
 
 
+def editar_perfil(request):
+    # Obtener la empresa asociada al usuario
+    aspirante = get_object_or_404(Usuarios, user=request.user)
+
+    if request.method == 'POST':
+        # Si el formulario fue enviado, cargar los datos en el formulario
+        form = EditarPerfil(request.POST, instance=aspirante)
+        if form.is_valid():
+            # Guardar los datos actualizados
+            form.save()
+            return redirect('perfil')  # Redirige de vuelta al perfil de la empresa
+    else:
+        # Si es una solicitud GET, mostrar el formulario con los datos actuales
+        form = EditarPerfil(instance=aspirante)
+
+    return render(request, 'paginaUsuario/editar_perfil.html', {'form': form})

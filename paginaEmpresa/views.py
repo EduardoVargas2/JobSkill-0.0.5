@@ -5,6 +5,12 @@ from .forms import PuestoForm
 from .models import Puesto
 from jobskill1.models import Empresa
 from paginaUsuario.models import Solicitud
+from .forms import EmpresaForm
+from django.contrib.auth.decorators import login_required
+
+
+
+
 
 
 # Create your views here.
@@ -84,6 +90,31 @@ def postulante(request):
     solicitud=Solicitud.objects.get(id=id)
     return render(request, "paginaEmpresa/postulante.html", {"solicitud":solicitud})
 
+@login_required
+def editar_perfil_empresa(request):
+    empresa = get_object_or_404(Empresa, user=request.user)
 
+    if request.method == 'POST':
+        form = EmpresaForm(request.POST, instance=empresa)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')  # Redirige de vuelta al perfil de la empresa
+    else:
+        # Si es una solicitud GET, mostrar el formulario con los datos actuales
+        form = EmpresaForm(instance=empresa)
 
-
+    return render(request, 'paginaEmpresa/editar_perfil_empresa.html', {'form': form})
+@login_required
+def editar_puesto(request, puesto_id):
+    puesto = get_object_or_404(Puesto, id=puesto_id)
+    if request.method == 'POST':
+        form = PuestoForm(request.POST, instance=puesto)
+        if form.is_valid():
+            form.save()
+            return redirect('home')  # Cambia 'lista_puestos' por tu URL real
+    else:
+        form = PuestoForm(instance=puesto)
+    return render(request, 'paginaEmpresa/editar_puesto.html', {'form': form})
+    
+   
+    

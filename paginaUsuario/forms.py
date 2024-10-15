@@ -1,5 +1,7 @@
 from django import forms
 from .models import Solicitud
+from .models import Usuarios
+
 
 class solicitudForm(forms.ModelForm):
     class Meta:
@@ -13,3 +15,8 @@ class solicitudForm(forms.ModelForm):
             'solicitudD': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Explica tus razones...'}),
             'cv': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         }
+        
+class EditarPerfil(forms.ModelForm):
+    class Meta:
+        model = Usuarios
+        fields = ['nombre', 'direccion', 'email', 'apellido', 'apellido2', 'genero', 'fecha_nacimiento', 'telefono']

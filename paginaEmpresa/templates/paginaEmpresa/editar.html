@@ -35,8 +35,9 @@
 
             </div>
             <div class="job-buttons">
-                <a href="/E/solicitud/?id={{puesto.id}}"><i class="btn btn-success">Ver solicitudes</i></a>
-                <i class="btn btn-success" style="margin: 2px;">Editar</i>
+                <a href="/E/solicitud/?id={{puesto.id}}" class="btn btn-success" style="margin: 2px;">Ver solicitudes</a>
+                <br><br>
+                <button type="button" class="btn btn-success" style="margin: 2px;" onclick="window.location.href='{% url 'editar_puesto' puesto.id %}'">Editar Oferta</button>
                 <!--
                 <i class="fas fa-pencil-alt edit-icon" onclick="editJob('{{puesto.id}}')"></i>
                 <i class="fas fa- delete-icon" onclick="deleteJob('{{puesto.id}}')"></i>
