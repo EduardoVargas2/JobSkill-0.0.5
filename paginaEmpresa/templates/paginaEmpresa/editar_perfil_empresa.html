@@ -49,18 +49,18 @@
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;">
-            <h1>Perfil de la Empresa</h1>
-            <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'editar_perfil_empresa' %}'">Editar Información</button>
+    <h1>Editar Perfil de Empresa</h1>
         </div>
 
         <div class="company-info">
-            <img src="{{empresa.foto.url}}" alt="Logo de la Empresa"> <!-- Cambia 'logo.png' al nombre del archivo de tu logo -->
             <div>
-                <p>Nombre:{{ empresa.nombre }}</p>
-                <p>Descripción: {{ empresa.descripcion }}</p>
-                <p>Dirección: {{ empresa.direccion }}</p>
-                <p>Objetivo: {{ empresa.objetivo }}</p>
-                <p>Teléfono: {{ empresa.telefono }}</p>
+              <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit"class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        
+            <br><a href="{% url 'perfil' %}"class="btn btn-danger">Cancelar</a>
                 </div>
             </div>
         </div>
@@ -76,3 +76,8 @@
 </body>
 </html>
  {% endblock %}
+
+
+
+
+

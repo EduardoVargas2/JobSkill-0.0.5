@@ -1,5 +1,8 @@
 from django import forms
 from .models import Puesto
+from .models import Empresa  
+
+
 
 class PuestoForm(forms.ModelForm):
     class Meta:
@@ -18,3 +21,11 @@ class PuestoForm(forms.ModelForm):
             'requisitos' : forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Describe lo que necesitas, puede ser en forma de lista, ej. \n-Ser honesto\n-Ser puntual\n-Tener disponibilidad de tiempo\n-etc.'}),
             'beneficios' : forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Beneficios extra que tu empresa da, como prestaciones, etc.'}),
         }
+class EmpresaForm(forms.ModelForm):
+    class Meta:
+        model = Empresa
+        fields = ['nombre', 'descripcion', 'direccion', 'objetivo', 'telefono']
+        
+        
+        
+        

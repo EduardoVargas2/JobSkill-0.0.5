@@ -46,23 +46,40 @@
     <h1>USUARIO</h1>
 
     <div class="profile-container">
-        <p>Nombre: {{ datos.nombre }}</p>
-        <p>Dirección: {{ datos.direccion }}</p>
-        <p>Teléfono: {{ datos.telefono }}</p>
-        <p>Correo Electrónico: {{ datos.email }}</p>
-        <p>Apellido Paterno: {{ datos.apellido }}</p>
-        <p>Apellido Materno: {{ datos.apellido2 }}</p>
-        <p>Género: {{ datos.genero }}</p>
-        <p>Fecha de Nacimiento: {{ datos.fecha_nacimiento }}</p>
-        <p>Foto de perfil:</p>
-        <img src="{{ datos.foto.url }}" alt="">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+
+        <br><a href="{% url 'perfil' %}" class="btn btn-danger">Cancelar</a>
         
-        <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'editar_perfil' %}'">
-            Editar Información
-        </button>
     </div>
 
 </body>
 </html>
 
 {% endblock %}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil de Empresa</title>
+</head>
+<body>
+    <h1>Editar Perfil de Empresa</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="{% url 'perfil' %}">Cancelar</a>
+</body>
+</html>

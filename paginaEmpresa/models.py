@@ -17,8 +17,7 @@ class Puesto(models.Model):
     class Meta:
         verbose_name='puesto'
         verbose_name_plural='puestos'
-
+        
     def __str__(self):
         return self.nombrePuesto
-    
     

@@ -1,0 +1,24 @@
+{% extends "paginaEmpresa/base.html" %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<header style="background: #333; color: #fff; padding: 20px 0; text-align: center;">
+    <div style="width: 80%; margin: auto; overflow: hidden;">
+        <h1>Editar Oferta de Trabajo</h1>
+    </div>
+</header>
+<div style="width: 80%; margin: auto; margin-top: 2%; overflow: hidden;">
+    <div class="form-control" style="padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff;">
+        <form method="POST" class="form-box" style="margin: 0 10%;">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div style="margin-top: 20px;">
+                <button type="submit" class="btn btn-success">Guardar</button>
+                <a href="{% url 'home' %}" class="btn btn-danger" style="margin-left: 10px;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

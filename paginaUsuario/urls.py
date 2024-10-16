@@ -8,4 +8,5 @@ urlpatterns=[
     path('resultado/', resultado, name="resultadoU"),
     path('postulacion/', postulacion, name="postulacion"),
     path('notificacion/', notificacion, name="notificacion"),
+    path('editar_perfil/',editar_perfil, name="editar_perfil"),
 ]
